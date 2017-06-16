@@ -1,0 +1,447 @@
+#ifndef MainMenuH
+#define MainMenuH
+
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ExtCtrls.hpp>
+#include <ComCtrls.hpp>
+#include <Chart.hpp>
+#include <Series.hpp>
+#include <TeeFunci.hpp>
+#include <TeEngine.hpp>
+#include <TeeProcs.hpp>
+#include <Db.hpp>
+#include <DBTables.hpp>
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <dir.h>
+#include <stdlib.h>
+#include <math.h>
+#include <Windows.h>
+#include <winbase.h>
+#include <shellapi.h>
+#include <Printers.hpp>
+#include <malloc.h>
+#include <memory.h>
+#include <time.h>
+#include <wingdi.h>
+
+
+#include "Unit1.h"
+#include "Unit2.h"
+#include "Unit3.h"
+#include "Unit4.h"
+#include "Unit5.h"
+#include "Unit6.h"
+#include "U_MakeData.h"
+#include "U_Func.h"
+#include "U_KM0104.h"
+#include "U_KD01.h"
+#include "U_KD11.h"
+#include "U_KD21.h"
+#include "U_KD31.h"
+#include "U_KD41.h"
+#include "U_KD51.h"
+#include "U_KD61.h"
+#include "U_KD71.h"
+#include "U_KD81.h"
+#include "U_KD91.h"
+#include "U_UPDCHR.h"
+
+#include "U_KDC1.h"
+#include "U_KD71_L.h"
+#include "U_KD71_R.h"
+
+#define STRMAX 500
+#define DTKSCODMAX 100
+
+//---------------------------------------------------------------------------
+//変数の宣言
+//構造体
+extern struct structUPDCHR {  //検査員
+    AnsiString DTKSCOD;
+    AnsiString KD01;
+    AnsiString KD11;
+    AnsiString KD21;
+    AnsiString KD31;
+    AnsiString KD41;
+    AnsiString KD51;
+    AnsiString KD61_1;
+    AnsiString KD61_2;
+    AnsiString KD61_3;
+    AnsiString KD61_4;
+    AnsiString KD71;
+    AnsiString KD81;
+    AnsiString KD91;
+}DTKSData;
+extern int UPDCHRNo;
+
+
+extern struct structKD01 {  //リード線長さ KD01
+    int PASS;               //リード線長さ 検査合格 不合格
+    int LD_LNG_NM;          //リード線長さ 検査データ数
+    double LD_LNG_MIN;      //リード線長さ 規格下
+    double LD_LNG_MAX;      //リード線長さ 規格上
+    double LD_LNG_VAL[100]; //リード線長さ 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD01Data;
+
+extern struct structKD11 {  //ブラシ幅寸法  KD11
+    int PASS;               //ブラシ幅寸法  検査合格 不合格
+    int BURASI_NM;          //ブラシ幅寸法 検査データ数
+    double BURASI_MIN;      //ブラシ幅寸法 規格下
+    double BURASI_MAX;      //ブラシ幅寸法 規格上
+    double BURASI_VAL[100]; //ブラシ幅寸法 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD11Data;
+
+extern struct structKD21 {  //ブラシ幅寸法縦押し  KD21
+    int PASS;               //ブラシ幅寸法縦押し  検査合格 不合格
+    int BURASIT_NM;         //ブラシ幅寸法縦押し 検査データ数
+    double BURASIT_MIN;     //ブラシ幅寸法縦押し 規格下
+    double BURASIT_MAX;     //ブラシ幅寸法縦押し 規格上
+    double BURASIT_VAL[100];//ブラシ幅寸法縦押し 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD21Data;
+
+extern struct structKD31 {  //リード線取付抵抗  KD31
+    int PASS;               //リード線取付抵抗  検査合格 不合格
+    int LD_TR_NM;         	//リード線取付抵抗 検査データ数
+    double LD_TR_DEN;      	//リード線取付抵抗 測定電圧
+    double LD_TR_TIME;     	//リード線取付抵抗 測定時間
+    double LD_TR_TEKO;     	//リード線取付抵抗 測定電流
+    double LD_TRV_VAL[100];	//リード線取付抵抗 測定電圧 検査データ
+    double LD_TRA_VAL[100];	//リード線取付抵抗 測定電流 検査データ
+    double LD_TRR_VAL[100];	//リード線取付抵抗 測定抵抗 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD31Data;
+
+extern struct structKD41 {  //リード線引張強度  KD41
+    int PASS;               //リード線引張強度  検査合格 不合格
+    double LD_HP_NM;          	//リード線引張強度 検査データ数
+    double LD_HP_MIN;      	//リード線引張強度 規格下
+    double LD_HP_VAL[100];		//リード線引張強度 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD41Data;
+
+extern struct structKD51 { 	//母体比重 KD51
+    int PASS;             	//母体比重 検査合格 不合格
+    int BOTAI_NM;         	//母体比重 検査データ数
+    double BOTAI_MIN;   	//母体比重 規格下
+    double BOTAI_MAX;     	//母体比重 規格上
+    double BOTAI_VAL[100];	//母体比重 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD51Data;
+
+extern struct structKD61 {  //Ｈｓ硬度  KD61
+    int PASS;               //Ｈｓ硬度  検査合格 不合格
+	int	HSC_A_MIN;			//ＨｓＣ硬度圧面 規格下
+	int	HSC_A_MAX;			//  〃　　　　 　規格上
+	int	HSC_S_MIN;			//  〃　　　側面 規格下
+	int	HSC_S_MAX;			//  〃　　　　　 規格上
+	int	HSC_A_VAL[100];		//ＨｓＣ硬度圧面 検査データ
+	int	HSC_S_VAL[100];		//  〃　　　側面 検査データ
+	int	HSC_A_SK_NM;		//ＨｓＣ測定個数
+	int	HSC_S_SK_NM;		//ＨｓＣ測定個数
+	double	HSD_A_MIN;		//ＨｓＤ硬度圧面 規格下
+	double	HSD_A_MAX;		//　〃　　　　　 規格上
+	double	HSD_S_MIN;		//　〃　　　側面 規格下
+	double	HSD_S_MAX;		//　〃　　　　　 規格上
+	double	HSD_A_VAL[100];	//ＨｓＤ硬度圧面 検査データ
+	double	HSD_S_VAL[100];	//　〃　　　側面 検査データ
+	int	HSD_A_SK_NM;		//ＨｓＤ測定個数
+	int	HSD_S_SK_NM;		//ＨｓＤ測定個数
+    int UPDCHR;             //更新者
+	int HSC_SK_SU;			//ＨｓＣ測定数
+	int HSD_SK_SU;			//ＨｓＤ測定数
+}KD61Data;
+
+extern struct structKD71 {  //固有抵抗率  KD71
+    int PASS;               //固有抵抗率  検査合格 不合格
+    int KOYU_NM;       		//固有抵抗率 検査データ数
+    int KOYU_MIN;   	   	//固有抵抗率 規格下
+    int KOYU_MAX;   	   	//固有抵抗率 規格上
+    int KOYU_VAL[100];  	//固有抵抗率 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD71Data;
+
+extern struct structKD81 {  //抗折力  KD81
+    int PASS;               //抗折力  検査合格 不合格
+    int MAGE_NM;       	    //抗折力 検査データ数
+    double MAGE_MIN; 	   	//抗折力 規格下
+    double MAGE_MAX;  	  	//抗折力 規格上
+    double MAGE_VAL[100]; 	//抗折力 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD81Data;
+
+extern struct structKD91 {  //座屈  KD91
+    int PASS;               //座屈  検査合格 不合格
+    int ZAKUT_NM;       	//座屈 検査データ数
+    int ZAKUT_MIN; 	   	    //座屈 規格下
+    int ZAKUT_MAX;  	  	//座屈 規格上
+    int ZAKUT_VAL[100]; 	//座屈 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD91Data;
+
+//2002/12/05 E.Takase
+extern struct structKDC1 {  //現物抗折力 KDC1
+    int PASS;               //現物抗折力 検査合格 不合格
+    int MAGEG_NM;       	//現物抗折力 検査データ数
+    double MAGEG_MIN; 	   	//現物抗折力 規格下
+    double MAGEG_MAX;  	  	//現物抗折力 規格上
+    double MAGEG_VAL[100]; 	//現物抗折力 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KDC1Data;
+
+extern struct structKD71_L {  //固有抵抗率  KD71
+    int PASS;               //固有抵抗率  検査合格 不合格
+    int KOYU_NM;       		//固有抵抗率 検査データ数
+    int KOYU_MIN;   	   	//固有抵抗率 規格下
+    int KOYU_MAX;   	   	//固有抵抗率 規格上
+    double KOYU_VAL[100];  	//固有抵抗率 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD71Data_L;
+
+extern struct structKD71_R {  //固有抵抗率  KD71
+    int PASS;               //固有抵抗率  検査合格 不合格
+    int KOYU_NM;       		//固有抵抗率 検査データ数
+    int KOYU_MIN;   	   	//固有抵抗率 規格下
+    int KOYU_MAX;   	   	//固有抵抗率 規格上
+    double KOYU_VAL[100];  	//固有抵抗率 検査データ
+    int UPDCHR;             //更新者
+	int SOKUTEI_SU;			//測定数
+}KD71Data_R;
+
+
+
+extern struct structKM01_04 { 	//検査マスタデータ KM01_04
+	AnsiString	KENSA_YMD; 		//	検査予定年月日
+	int	TOLEY_NO;	            	//	トレーNo
+	int	SAMPLE_P;       		//	サンプルポジション
+	int	KOKBNG;	            	//	工管No
+	AnsiString	DTKSCOD;		//	得意先コード
+	AnsiString	DTKSHIN;		//	得意先品番
+	AnsiString	LOTNO;			//	ロットNo
+	AnsiString	HINBAN;			//	自社品番
+	AnsiString	ZISCOD;			//	材質コード
+	AnsiString	ZISNAM;			//	材質名
+	int	NUM;            		//	焼成コード
+	AnsiString	SYOSCOD;		//	焼成コード
+	int	SORTKEY;	      		//	ソートキー
+	int	KEIJKBN;				//	形状区分
+	int	SK_LD_LNG;				//	測定区分　線長さ
+	int	SK_BURASI;				//	　〃　　　ブラシ幅
+	int	SK_BURASIT;				//	　〃　　　ブラシ幅縦押し
+	int	SK_LD_TR;				//	　〃　　　線取付抵抗
+	int	SK_LD_HP;				//	　〃　　　線引張強度
+	int	SK_BOTAI;				//	　〃　　　母体比重
+	int	SK_KOYU;				//	　〃　　　固有抵抗
+	int	SK_MAGE;				//	　〃　　　抗折力
+	int	SK_HSC_A;				//	　〃　　　HsC硬度（圧面）
+	int	SK_HSC_S;				//	　〃　　　HsC硬度（側面）
+	int	SK_HSD_A;				//	　〃　　　HsD硬度（圧面）
+	int	SK_HSD_S;				//	　〃　　　HsD硬度（側面）
+	int	SK_ZAKUT;				//	　〃　　　座屈
+	int	HIST_SOKUT;				//	ヒストグラム測定数
+	int	HIST_KIKAK;				//	　〃　　　　　規格
+	double	HIST_MIN;			//	　〃　　　　　下限規格
+	double	HIST_MAX;			//	　〃　　　　　上限規格
+	double	LD_LNG_MIN;			//	リード線長さ　上限
+	double	LD_LNG_MAX;			//	　〃　　　　　下限
+	double	BURASI_MIN;			//	ブラシ幅　上限
+	double	BURASI_MAX;			//	　〃　　　下限
+	double	BURASIT_MIN;		//	ブラシ幅縦押し上限
+	double	BURASIT_MAX;		//	　〃　　　　　下限
+	double	LD_TR_DENA;			//	リード線取付測定電圧
+	double	LD_TR_DENR;			//	リード線取付測定電流
+	int	LD_TR_TIME;				//	　〃　　取付測定時間
+	int	LD_TR_TEKO;				//	　〃　　取付抵抗
+	int	LD_HP_SPD;				//	リード線引張測定速度
+	double	LD_HP_KYO;			//	　〃　　引張強度
+	int	LD_HP_TAN;				//	　〃　　引張強度単位
+	double	BOTAI_MIN;			//	母体比重　下限
+	double	BOTAI_MAX;			//	　〃　　　上限
+	int	KOYU_MIN;				//	固有抵抗率　下限
+	int	KOYU_MAX;				//	　〃　　　　上限
+	double	KOYU_DEN;			//	　〃　　　　電流
+	int	KOYU_PRO;				//	　〃　　　　プローブ
+	double	MAGE_MIN;			//	曲げ強度　下限
+	double	MAGE_MAX;			//	　〃　　　上限
+	int	MAGE_TAN;				//	　〃　　　単位
+	double	MAGE_SPAN;			//	　〃　　　スパン
+	int	HSC_A_MIN;				//	ＨｓＣ硬度（圧面）下限
+	int	HSC_A_MAX;				//	　〃　　　　　　　上限
+	int	HSC_S_MIN;				//	　〃　　　（側面）下限
+	int	HSC_S_MAX;				//	　〃　　　　　　　上限
+	double	HSD_A_MIN;			//	ＨｓＤ硬度（圧面）下限
+	double	HSD_A_MAX;			//	　〃　　　　　　　上限
+	double	HSD_S_MIN;			//	　〃　　　（側面）下限
+	double	HSD_S_MAX;			//	　〃　　　　　　　上限
+	int	ZAKUT_MIN;				//	座屈　下限
+	int	ZAKUT_MAX;				//	　〃　上限
+	AnsiString	ADDYMD;			//	登録日
+	AnsiString	ADDTIM;			//	登録時間
+	AnsiString	UPDYMD;			//	変更日
+	AnsiString	UPDTIM;			//	変更時間
+	int	UPDCHR;					//	更新者
+	int	UPDCNT;					//	更新回数
+	AnsiString	RO_NO;			//	炉No
+	int	MAX_ONDO;				//	MAX温度
+	int	CYCLE_TIME;				//	サイクルタイム
+	int	SK_MAGEG;				//	測定区分　現物曲げ強度
+	double	MAGEG_MIN;			//	曲げ強度　下限
+	double	MAGEG_MAX;			//	　〃　　　上限
+	int	MAGEG_TAN;				//	　〃　　　単位
+	double	MAGEG_SPAN;			//	　〃　　　スパン
+}KM01_04Data;
+
+extern int KENSAKU_Mode;        //一覧検索モード
+                                //0 検査日
+                                //1 得意先品番
+                                //2 開始ロットNo
+                                //3 終了ロットNo
+
+extern int DataNo;    //最大検査データ数
+extern int Master_rec;//マスタ情報印刷行
+extern int rec;       //レコード数
+extern int pass;      //合格1、不合格0
+extern int newpage;   //改ページNo
+extern AnsiString strcnd;       //検査日
+extern AnsiString strcnd2;       //検査日
+extern AnsiString DTKSHINcnd;   //得意先品番
+extern AnsiString StartLOTcnd;  //開始ロットNo
+extern AnsiString EndLOTcnd;    //終了ロットNo
+extern AnsiString DTKSCODcnd;   //得意先コード
+extern int Flagcnd;             //0→検査日別  1→得意先品番別
+
+extern int     USER_COD;
+extern String  USER_NAM;
+extern String  BUMO_COD;
+extern String  BUMO_NAM;
+
+
+extern AnsiString Last_DTKSCOD;
+extern AnsiString UPDCHRstr;
+extern AnsiString UPDCHRstr02;
+extern AnsiString KIKAKUMINstr;
+extern AnsiString KIKAKUMAXstr;
+
+//---------------------------------------------------------------------------
+//関数の宣言
+extern void UPDCHRInsert01(void);
+extern void UPDCHR_Serch01(void);  //2002/12/06 E.Takase コンミ用
+extern void UPDCHR_Serch01(void);
+extern void MakeData(void);
+extern AnsiString varstr(Variant str);
+extern int varint(Variant str);
+//extern AnsiString varstr(AnsiString str);
+//extern int varint(AnsiString str);
+
+extern double vardouble(Variant str);
+extern void KM01_04Serch01(void);
+extern void DTKSHIN_CIYCLEInsert01(void);
+extern void KIKAKU_MINInsert01(void);
+extern void KIKAKU_MINInsert02(void);  //2002/12/06 E.Takase コンミ用
+extern void KIKAKU_MAXInsert01(void);
+extern void PASS_FailUpdate01(void);
+extern void KM01_04Sub01(void);
+extern void SOKUTEIInsert01(void);
+extern void SOKUTEIInsert02(void);     //2002/12/06 E.Takase コンミ用
+extern void LOT_SOKUTEIInsert01(void);
+extern void KD01_02Serch01(void);
+extern void KD01Compare01(void);
+extern void KD01Format01(void);
+
+extern void KD11_12Serch01(void);
+extern void KD11Compare01(void);
+extern void KD11Format01(void);
+
+extern void KD21_22Serch01(void);
+extern void KD21Compare01(void);
+extern void KD21Format01(void);
+
+extern void KD31_32Serch01(void);
+extern void KD31Compare01(void);
+extern void KD31Format01(void);
+
+extern void KD41_42Serch01(void);
+extern void KD41Compare01(void);
+extern void KD41Format01(void);
+
+extern void KD51_52Serch01(void);
+extern void KD51Compare01(void);
+extern void KD51Format01(void);
+
+extern void KD61_62Serch01(void);
+extern void KD61Compare01(void);
+extern void KD61Format01(void);
+
+extern void KD71_72Serch01(void);
+extern void KD71Compare01(void);
+extern void KD71Format01(void);
+
+extern void KD81_82Serch01(void);
+extern void KD81Compare01(void);
+extern void KD81Format01(void);
+
+extern void KD91_92Serch01(void);
+extern void KD91Compare01(void);
+extern void KD91Format01(void);
+
+//2002/12/05 E.Takase
+extern void KDC1_C2Serch01(void);
+extern void KDC1Compare01(void);
+extern void KDC1Format01(void);
+
+extern void KD71_72_LSerch01(void);
+extern void KD71_LCompare01(void);
+extern void KD71_LFormat01(void);
+
+extern void KD71_72_RSerch01(void);
+extern void KD71_RCompare01(void);
+extern void KD71_RFormat01(void);
+
+extern double DivAB(double a, double b);
+extern AnsiString SOKUTEIstrI(int i, int n, int val);
+extern AnsiString SOKUTEIstrF(int i, int n, double val, int k);
+extern void PassSet(void);
+extern void DataNoSet(void);
+
+extern AnsiString Kara(int i);
+
+//得意先別に検査員を検索
+extern void UPDCHR_Make01(int CurNo);
+extern void UPDCHR_2_Make01(int CurNo);  //2002/12/06 E.Takase コンミ用
+//「検査員=・・・・」文字列作成
+extern void UPDCHR_Make02(void);
+extern void UPDCHR_2_Make02(void);       //2002/12/06 E.Takase コンミ用
+//TW_UPDCHR に 追加
+extern void UPDCHRInsert02(void);
+
+extern int iKojoKbn ;            //工場区分 2016/06/24 追加
+
+#endif
+
+
+
+

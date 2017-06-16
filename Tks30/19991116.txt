@@ -1,0 +1,34 @@
+'ヒストグラムデータ
+Type KDA1_DATA       '1つの仕事を示すﾃﾞｰﾀの構造体
+	KENSA_YMD			as String	' 検査予定年月日
+	SEQNO				as Intger	' SEQ-NO
+	DTKSCOD				as String	' 得意先コード
+	DTKSNAM				as String	' 得意先名
+	DTKSHIN			    as String	' 得意先品番
+	LOTNO				as String	' ロットNo
+	HINBAN				as String	' 自社品番
+	ZISCOD       		as String	' 材質コード
+	ZISNAM       		as String	' 材質名
+	HIST_SOKUT_Ori      as Intger	' ヒストグラム測定数(Origal)
+	HIST_SOKUT          as Intger	' ヒストグラム測定数
+	HIST_KIKAK          as Intger	' ヒストグラム規格（１，２，３）
+	HIST_MIN         	as Single	' ヒストグラム下限規格
+	HIST_MAX         	as Single	' ヒストグラム上限規格
+	SOKUTE_SU           as Intger	' 測定数
+	SOKUTE_SU_Ori		as Intger	
+	SOKUTE_AVE       	as Single	' 平均値
+	SOKUTE_MIN       	as Single	' 最小値
+	SOKUTE_MAX       	as Single	' 最大値
+	SOKUTE_R         	as Single	' R
+	SOKUTE_SGM       	as Single	' 標準偏差σ
+	SOKUTE_CP        	as Single	' CP
+	SOKUTE_CPK       	as Single	' CPK
+	SOKUTE_K         	as Single	' K
+	SOKUTE_P         	as Single	' 不良率
+End Type
+
+Dim KDA1 as KDA1_DATA 
+Dim SOKUTEI_CH[1000] as Single
+Dim E_Screen_Data[3][20] as Single
+Dim E_Scale as Integer
+Dim TANNAM as String

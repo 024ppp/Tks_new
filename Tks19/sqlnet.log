@@ -1,0 +1,189 @@
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=Project1.exe)(HOST=Windows NT PC)(USER=wyj)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=ktrs.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 22-OCT-99 13:37:33
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12541
+    TNS-12541: TNS:リスナーが存在しません。
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: リスナーが存在しません。
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=Project1.exe)(HOST=Windows NT PC)(USER=wyj)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=ktrs.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 23-OCT-99 09:04:43
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12535
+    TNS-12535: TNS:操作のタイムアウトが発生しました。
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: 操作のタイムアウトが発生しました。
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=Project1.exe)(HOST=Windows NT PC)(USER=wyj)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=ktrs.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 23-OCT-99 09:05:01
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12541
+    TNS-12541: TNS:リスナーが存在しません。
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: リスナーが存在しません。
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=Project1.exe)(HOST=Windows NT PC)(USER=wyj)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=ktrs.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 23-OCT-99 09:05:03
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12541
+    TNS-12541: TNS:リスナーが存在しません。
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: リスナーが存在しません。
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=bcb.exe)(HOST=Windows NT PC)(USER=wyj)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=ktrs.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 27-OCT-99 08:43:03
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12541
+    TNS-12541: TNS:リスナーが存在しません。
+    ns secondary err code: 12560
+    nt main err code: 511
+    TNS-00511: リスナーが存在しません。
+    nt secondary err code: 61
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=BCB.exe)(HOST=Windows NT PC)(USER=wyj)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=ktrs.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 28-OCT-99 08:23:20
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12535
+    TNS-12535: TNS:操作のタイムアウトが発生しました。
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: 操作のタイムアウトが発生しました。
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12560, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.1.1.8)(PORT=1521))(CONNECT_DATA=(SID=KTRS)(CID=(PROGRAM=C:\Program Files\Borland\CBuilder4\Bin\bcb.exe)(HOST=JFE-TRIS)(USER=takase))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.2.0.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.2.0.1.0 - Production
+  Time: 16-MAR-2009 21:00:41
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12560
+    TNS-12560: TNS: プロトコル・アダプタ・エラー
+    ns secondary err code: 0
+    nt main err code: 538
+    TNS-00538: Message 538 not found;  product=NETWORK; facility=TNS
+
+    nt secondary err code: 65
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12560, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.1.1.8)(PORT=1521))(CONNECT_DATA=(SID=KTRS)(CID=(PROGRAM=C:\Program Files\Borland\CBuilder4\Bin\BCB.exe)(HOST=JFE-TRIS)(USER=takase))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.2.0.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.2.0.1.0 - Production
+  Time: 16-MAR-2009 21:05:31
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12560
+    TNS-12560: TNS: プロトコル・アダプタ・エラー
+    ns secondary err code: 0
+    nt main err code: 538
+    TNS-00538: Message 538 not found;  product=NETWORK; facility=TNS
+
+    nt secondary err code: 65
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12560, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.1.1.8)(PORT=1521))(CONNECT_DATA=(SID=KTRS)(CID=(PROGRAM=C:\Program Files\Borland\CBuilder4\Bin\BCB.exe)(HOST=JFE-TRIS)(USER=takase))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 9.2.0.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 9.2.0.1.0 - Production
+  Time: 16-MAR-2009 21:06:55
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 0
+    ns main err code: 12560
+    TNS-12560: TNS: プロトコル・アダプタ・エラー
+    ns secondary err code: 0
+    nt main err code: 538
+    TNS-00538: Message 538 not found;  product=NETWORK; facility=TNS
+
+    nt secondary err code: 65
+    nt OS err code: 0

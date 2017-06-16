@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
+<h3>
+--------------------構成: Pc12 - Win32 Debug--------------------
+</h3>
+<h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+一時ﾌｧｲﾙ "C:\TEMP\RSP20.tmp" を作成し、次の内容を記録します
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/Pc12.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Tris\素材検査システム\データ収録\Pc12_new\PC12Ctrl.C"
+]
+Creating command line "cl.exe @C:\TEMP\RSP20.tmp" 
+一時ﾌｧｲﾙ "C:\TEMP\RSP21.tmp" を作成し、次の内容を記録します
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Pc12_new.pdb" /debug /machine:I386 /out:"Debug/Pc12_new.exe" /pdbtype:sept 
+".\Debug\PC12Ctrl.obj"
+".\Debug\SharedMemory.obj"
+".\Debug\tty2.obj"
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @C:\TEMP\RSP21.tmp" の作成中
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ｺﾝﾊﾟｲﾙ中...
+PC12Ctrl.C
+c:\tris\素材検査システム\データ収録\pc12_new\pc12ctrl.c(439) : warning C4018: '<' : signed と unsigned の数値を比較しようとしました。
+ﾘﾝｸ中...
+
+
+
+<h3>結果</h3>
+Pc12_new.exe - ｴﾗｰ 0、警告 1
+</pre>
+</body>
+</html>

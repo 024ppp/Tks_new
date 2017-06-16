@@ -1,0 +1,506 @@
+/***********************************************************************
+*             Copyright (c) 1999 NKK UNICS corporation                 *
+*                         All rights reserved                          *
+*                                                                      *
+*  system name   : トライス検査システム（ＴＫＳ２１）                  *
+*  file   name   : Unit3.cpp                                           *
+*  create        : 2000.01.07                                          *
+*  update        : 2002.02.26(検索条件追加：検査日)                    *
+*  contents      : データ検索部プログラム                              *
+*  written by    : 高瀬  恵利(NKK unics Corp.)                         *
+*  reviced ver   : 1.0                                                 *
+***********************************************************************/
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#include <stdio.h>
+#pragma hdrstop
+
+
+#include "Unit1.h"
+#include "Unit3.h"
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+//---------------------------------------------------------------------------
+//検索MAIN
+int __fastcall TForm1::Search_MAIN(void)
+{
+	int n;
+    int flag;
+
+    flag = 0;
+
+    //KD01 リード線長さ寸法 検索
+	//n = Search_KD(0);
+    if ( n > 0 || flag > 0 ) flag = 1;
+
+    return ( flag );
+
+}
+//---------------------------------------------------------------------------
+//指定された検査項目のデータを検索
+//testItem（検査項目）
+int __fastcall TForm1::Search_KD(int testItem)
+{
+	int iRow,i;
+	AnsiString sBuf;
+
+	// Initial Query
+	Query1->Close();
+	Query1->SQL->Clear();
+
+	// 問合せ実行
+	//検索 KD01から
+	switch(testItem)
+	{
+
+		case  0: //リード線長さ
+			sBuf = "SELECT *  FROM KD01";
+			break;
+
+		case  1: //ブラシ幅
+			sBuf = "SELECT *  FROM KD11";
+			break;
+
+		case  2: //ブラシ幅(縦押し)
+			sBuf = "SELECT *  FROM KD21";
+			break;
+
+		case  3: //リード線取付抵抗
+			sBuf = "SELECT *  FROM KD31";
+			break;
+
+		case  4: //リード線取付強度
+			sBuf = "SELECT *  FROM KD41";
+			break;
+
+		case  5: //見掛比重
+			sBuf = "SELECT *  FROM KD51";
+			break;
+
+		case  6: //硬度(HsC 圧面)
+			sBuf = "SELECT *  FROM KD61";
+			break;
+
+		case  7: //硬度(HsC 側面)
+			sBuf = "SELECT *  FROM KD61";
+			break;
+
+		case  8: //硬度(HsD 圧面)
+			sBuf = "SELECT *  FROM KD61";
+			break;
+
+		case  9: //硬度(HsD 側面)
+			sBuf = "SELECT *  FROM KD61";
+			break;
+
+		case 10: //抵抗率
+		case 14: //抵抗率(L) //2002/12/07 E.Takase
+		case 15: //抵抗率(R) //2002/12/07 E.Takase
+			sBuf = "SELECT *  FROM KD71";
+			break;
+
+		case 11: //曲げ強さ
+			sBuf = "SELECT *  FROM KD81";
+			break;
+
+		case 12: //座屈
+			sBuf = "SELECT *  FROM KD91";
+			break;
+
+		case 13: //曲げ強さ(現物)  //2002/12/07 E.Takase
+			sBuf = "SELECT *  FROM KDC1";
+			break;
+
+    }
+
+    //Where条件
+    //得意先品番
+	sBuf += " where DTKSHIN = '" + EdtTKSHIN->Text + "'";
+    //開始ロット番号（空白の場合は指定しない）
+    if ( EdtSLOT->Text != "" ) {
+		sBuf += " AND LOTNO >= '" + EdtSLOT->Text + "'";
+    }
+    //終了ロット番号（空白の場合は指定しない）
+    if ( EdtELOT->Text != "" ) {
+		sBuf += " AND LOTNO <= '" + EdtELOT->Text + "'";
+    }
+
+    //2002/02/26追加
+    //開始日（空白の場合は指定しない）
+    if ( EdtSYMD->Text != "" ) {
+		sBuf += " AND KENSA_YMD >= '" + DelSEPA(EdtSYMD->Text) + "'";
+    }
+    //終了日（空白の場合は指定しない）
+    if ( EdtEYMD->Text != "" ) {
+		sBuf += " AND KENSA_YMD <= '" + DelSEPA(EdtEYMD->Text) + "'";
+    }
+
+	switch(testItem)
+	{
+		case  0: //リード線長さ
+		case  1: //ブラシ幅
+		case  2: //ブラシ幅(縦押し)
+		case  3: //リード線取付抵抗
+		case  4: //リード線取付強度
+		case  5: //見掛比重
+		case 10: //抵抗率
+		case 11: //曲げ強さ
+		case 12: //座屈
+		case 13: //曲げ強さ(現物) //2002/12/07 E.Takase
+		case 14: //抵抗率(L) //2002/12/07 E.Takase
+		case 15: //抵抗率(R) //2002/12/07 E.Takase
+			sBuf += " AND SOKUTEI_SU > 0";
+			sBuf += " AND SOKUTE_KBN = 1";
+			break;
+
+		case  6: //硬度(HsC 圧面)
+			sBuf += " AND HSC_SK_SU > 0";
+			sBuf += " AND ( SOKUTE_KBN1 = 1 OR SOKUTE_KBN1 = 3 )";
+			break;
+
+		case  7: //硬度(HsC 側面)
+			sBuf += " AND HSC_SK_SU > 0";
+			sBuf += " AND ( SOKUTE_KBN1 = 2 OR SOKUTE_KBN1 = 3 )";
+			break;
+
+		case  8: //硬度(HsD 圧面)
+			sBuf += " AND HSD_SK_SU > 0";
+			sBuf += " AND ( SOKUTE_KBN2 = 1 OR SOKUTE_KBN2 = 3 )";
+			break;
+
+		case  9: //硬度(HsD 側面)
+			sBuf += " AND HSD_SK_SU > 0";
+			sBuf += " AND ( SOKUTE_KBN2 = 2 OR SOKUTE_KBN2 = 3 )";
+			break;
+    }
+    //sBuf += " AND SOKUTE_KBN = 1";
+
+    //20160704追加
+    if ( Form1->RadioHON->Checked == true ) {
+        //本社のみ
+    	sBuf += " AND KOJOKBN = 0";
+    } else if ( Form1->RadioKOU->Checked == true ) {
+        //広陽のみ
+    	sBuf += " AND KOJOKBN = 1";
+    } else if ( Form1->RadioRYO->Checked == true ) {
+        //Nothing
+    } else {
+        //Nothing
+    }
+
+    //2000.11.07修正 検査日でソート OR ロットNOでソート
+    if ( Form1->RadioKANSA->Checked == true ) {
+		sBuf += " order by KENSA_YMD,LOTNO";
+    } else {
+		sBuf += " order by LOTNO,KENSA_YMD";
+    }
+
+	Query1->SQL->Add(sBuf);
+	Query1->Open();
+	Query1->Active = true;
+
+	if ( Query1->Bof == true && Query1->Eof ) {
+		//検索結果 ０件
+		return(0);
+	}
+    return(1);
+
+}
+
+//---------------------------------------------------------------------------
+//1行分のデータを読み込む
+//testItem（検査項目）
+void __fastcall TForm1::ReadLineData(int testItem)
+{
+	AnsiString sBuf;
+
+	//文字配列の初期化
+	KD.KENSA_YMD	 = " ";		// 検査日
+	KD.DTKSHIN		 = " ";     // 得意先品番
+	KD.LOTNO		 = " ";    	// ロットNo
+	KD.ZISNAM		 = " ";     // 材質名
+	KD.KIKAK_MIN	 = 0.0;     // 下限規格
+	KD.KIKAK_MAX	 = 0.0;     // 上限規格
+	KD.SOKUTE_SU	 = 0;       // 測定数
+	KD.SOKUTE_NM	 = 0;       // 測定指示数
+	KD.SOKUTEI_1	 = 0.0;     // 測定値1
+	KD.SOKUTEI_2	 = 0.0;     // 測定値2
+	KD.X_AVE		 = 0.0;     // X平均値
+	KD.R			 = 0.0;     // R
+	KD.TANI			 = 0.0;     // 単位
+
+	sBuf = Form1->Query1->FieldValues["KENSA_YMD"];
+	KD.KENSA_YMD = sBuf;							// 検査日
+
+	sBuf = Form1->Query1->FieldValues["DTKSHIN"];
+	KD.DTKSHIN = sBuf;      						// 得意先品番
+
+	sBuf = Form1->Query1->FieldValues["LOTNO"];
+	KD.LOTNO = sBuf;    							// ロットNo
+
+	sBuf = Form1->Query1->FieldValues["ZISNAM"];
+	KD.ZISNAM = sBuf;       						// 材質名
+
+    //項目によっては 単位が必要
+	switch(testItem)
+	{
+
+		case  0: //リード線長さ
+			sBuf = Form1->Query1->FieldValues["LD_LNG_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["LD_LNG_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  1: //ブラシ幅
+			sBuf = Form1->Query1->FieldValues["BURASI_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["BURASI_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  2: //ブラシ幅(縦押し)
+			sBuf = Form1->Query1->FieldValues["BURASIT_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["BURASIT_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  3: //リード線取付抵抗
+			sBuf = Form1->Query1->FieldValues["LD_TR_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  4: //リード線取付強度
+			sBuf = Form1->Query1->FieldValues["LD_HP_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			sBuf = Form1->Query1->FieldValues["LD_HP_TAN"];
+			KD.TANI = StrToInt(sBuf);    					// 単位
+
+			break;
+
+		case  5: //見掛比重
+			sBuf = Form1->Query1->FieldValues["BOTAI_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["BOTAI_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1B"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2B"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  6: //硬度(HsC 圧面)
+			sBuf = Form1->Query1->FieldValues["HSC_A_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["HSC_A_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["HSC_A_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["HSC_A_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  7: //硬度(HsC 側面)
+			sBuf = Form1->Query1->FieldValues["HSC_S_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["HSC_S_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["HSC_S_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["HSC_S_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  8: //硬度(HsD 圧面)
+			sBuf = Form1->Query1->FieldValues["HSD_A_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["HSD_A_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["HSD_A_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["HSD_A_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case  9: //硬度(HsD 側面)
+			sBuf = Form1->Query1->FieldValues["HSD_S_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["HSD_S_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["HSD_S_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["HSD_S_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case 10: //抵抗率
+			sBuf = Form1->Query1->FieldValues["KOYU_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["KOYU_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1T"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2T"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+		case 11: //曲げ強さ
+			sBuf = Form1->Query1->FieldValues["MAGE_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["MAGE_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1M"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2M"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+			sBuf = Form1->Query1->FieldValues["MAGE_TAN"];
+			KD.TANI = StrToInt(sBuf);    					// 単位
+
+			break;
+
+		case 12: //座屈
+			sBuf = Form1->Query1->FieldValues["ZAKUT_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["ZAKUT_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+        //2002/12/07 E.Takase
+		case 13: //曲げ強さ(現物)
+			sBuf = Form1->Query1->FieldValues["MAGEG_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["MAGEG_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_1M"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEI_2M"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+			sBuf = Form1->Query1->FieldValues["MAGEG_TAN"];
+			KD.TANI = StrToInt(sBuf);    					// 単位
+
+			break;
+
+		//2002/12/07 E.Takase
+		case 14: //抵抗率(L) 
+			sBuf = Form1->Query1->FieldValues["KOYU_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["KOYU_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEV_1L"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEV_2L"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+            
+		//2002/12/07 E.Takase
+		case 15: //抵抗率(R) 
+			sBuf = Form1->Query1->FieldValues["KOYU_MIN"];
+			KD.KIKAK_MIN = StrToFloat(sBuf);    			// 下限規格
+
+			sBuf = Form1->Query1->FieldValues["KOYU_MAX"];
+			KD.KIKAK_MAX = StrToFloat(sBuf);    			// 上限規格
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEV_1R"];
+			KD.SOKUTEI_1 = StrToFloat(sBuf);    			// 測定値1
+
+			sBuf = Form1->Query1->FieldValues["SOKUTEV_2R"];
+			KD.SOKUTEI_2 = StrToFloat(sBuf);    			// 測定値2
+
+			break;
+
+
+
+	}
+
+    //X平均値
+    KD.X_AVE = ( KD.SOKUTEI_1 + KD.SOKUTEI_2 ) / 2.0;
+    //R
+    if ( KD.SOKUTEI_1 > KD.SOKUTEI_2 ) {
+		KD.R = KD.SOKUTEI_1 - KD.SOKUTEI_2;
+    } else {
+		KD.R = KD.SOKUTEI_2 - KD.SOKUTEI_1;
+    }
+
+}
+

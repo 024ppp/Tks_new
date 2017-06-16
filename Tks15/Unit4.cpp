@@ -1,0 +1,91 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Main.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma link "NumberEdit"
+#pragma resource "*.dfm"
+TForm4 *Form4;
+
+//---------------------------------------------------------------------------
+__fastcall TForm4::TForm4(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::Button1Click(TObject *Sender)
+{
+   int DataNoIdx_Old;
+
+     //½ÊßÝ‚ÌÝ’è
+     if( EdtS->Value == 0.0 ) return ;
+
+     Form1->PnlSpan1->Caption = EdtS->Text ;
+     Form1->PnlSpan2->Caption = EdtS->Text ;
+
+     if( KD81Data[SamplePositionIdx-1].SOKUTEI_NM  > 2 )
+         Form1->PnlSpan3->Caption = EdtS->Text ;
+
+     //½ÊßÝ‚Ì•Û‘¶
+     if( KD81Data[SamplePositionIdx-1].SOKUTEI_NP_CUR < KD81Data[SamplePositionIdx-1].SOKUTEI_NM)
+         KD81Data[SamplePositionIdx-1].SOKUTEI_NP_CUR = KD81Data[SamplePositionIdx-1].SOKUTEI_NM ;
+
+     for( int i=0; i< KD81Data[SamplePositionIdx-1].SOKUTEI_NM; i++ ){
+           KD81Data[SamplePositionIdx-1].SOKUTEI_P[i] = EdtS->Value ;
+
+           //RÜ—Í‚ÌŒvŽZ
+          if( MForceCal(SamplePositionIdx, i+1 ) ){
+
+              //Œ³ÃÞ°ÀNO‚Ì•Û‘¶
+              DataNoIdx_Old = DataNoIdx ;
+
+
+               if( i == 0)
+                    pEdt1[SamplePositionIdx-1]->Text = FormatFloat("#0.0",KD81Data[SamplePositionIdx-1].SOKUTEI_M[i] );
+               else if( i == 1)
+                    pEdt2[SamplePositionIdx-1]->Text = FormatFloat("#0.0",KD81Data[SamplePositionIdx-1].SOKUTEI_M[i] );
+               else
+                    pEdt3[SamplePositionIdx-1]->Text = FormatFloat("#0.0",KD81Data[SamplePositionIdx-1].SOKUTEI_M[i] );
+
+               DataNoIdx = i+1 ;
+
+               ///‹KŠiÁª¯¸
+               CheckInKikaku() ;
+
+               //Œ³ÃÞ°ÀNO‚Ö–ß‚é
+               DataNoIdx = DataNoIdx_Old ;
+           }
+     }
+
+      Close();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm4::Button2Click(TObject *Sender)
+{
+     Close();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::FormActivate(TObject *Sender)
+{
+     Pnl1->Caption = FormatFloat( "#0.0", KD81Data[SamplePositionIdx-1].MAGE_SPAN );
+     EdtS->SetFocus();
+     EdtS->SelectAll();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm4::EdtSKeyDown(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+     switch(Key)
+     {
+         case VK_RETURN:
+              Button1Click(Sender);
+              break;
+    }
+}
+//---------------------------------------------------------------------------
+

@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>ﾋﾞﾙﾄﾞのﾛｸﾞ</h1>
+<h3>
+--------------------構成: Pc3Ctrl - Win32 Debug--------------------
+</h3>
+<h3>ｺﾏﾝﾄﾞ ﾗｲﾝ</h3>
+Creating command line "rc.exe /l 0x411 /fo"Debug/Pc3Ctrl.res" /d "_DEBUG" "\\Hom1-008\MTS作業場\TAKASE\20090304\データ収録\Pc3\Pc3Ctrl_20090302\Pc3Ctrl.RC"" 
+一時ﾌｧｲﾙ "C:\TEMP\RSP3.tmp" を作成し、次の内容を記録します
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/Pc3Ctrl.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"\\Hom1-008\MTS作業場\TAKASE\20090304\データ収録\Pc3\Pc3Ctrl_20090302\PC3Ctrl.C"
+"\\Hom1-008\MTS作業場\TAKASE\20090304\データ収録\共通ソース\Socket.c"
+"\\Hom1-008\MTS作業場\TAKASE\20090304\データ収録\共通ソース\tty.c"
+]
+Creating command line "cl.exe @C:\TEMP\RSP3.tmp" 
+一時ﾌｧｲﾙ "C:\TEMP\RSP4.tmp" を作成し、次の内容を記録します
+[
+wsock32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Pc3Ctrl.pdb" /debug /machine:I386 /out:"Debug/Pc3Ctrl.exe" /pdbtype:sept 
+".\Debug\PC3Ctrl.obj"
+".\Debug\Socket.obj"
+".\Debug\tty.obj"
+".\Debug\Pc3Ctrl.res"
+]
+ｺﾏﾝﾄﾞ ﾗｲﾝ "link.exe @C:\TEMP\RSP4.tmp" の作成中
+<h3>ｱｳﾄﾌﾟｯﾄ ｳｨﾝﾄﾞｳ</h3>
+ﾘｿｰｽをｺﾝﾊﾟｲﾙ中...
+ｺﾝﾊﾟｲﾙ中...
+PC3Ctrl.C
+Socket.c
+tty.c
+\\hom1-008\mts作業場\takase\20090304\データ収録\共通ソース\tty.c(467) : warning C4554: '&' : 演算子の優先順位に問題があります。ｶｯｺを使用して優先順位を明確にしてください
+ﾘﾝｸ中...
+
+
+
+<h3>結果</h3>
+Pc3Ctrl.exe - ｴﾗｰ 0、警告 1
+</pre>
+</body>
+</html>

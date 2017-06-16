@@ -1,0 +1,10 @@
+!MS$FREEFORM
+! Microsoft Developer Studio generated include file.
+! Used by BarCodeTest.RC
+!
+      integer, parameter :: IDD_DLG_MAIN                    = 101
+      integer, parameter :: IDI_ICON_MAIN                   = 102
+      integer, parameter :: IDB_BITMAP1                     = 103
+      integer, parameter :: IDC_EDT_DATA                    = 1010
+      integer, parameter :: IDC_BTN_CHGCH                   = 1029
+      integer, parameter :: IDC_BTN_DATA                    = 1030

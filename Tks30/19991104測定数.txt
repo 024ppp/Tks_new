@@ -1,0 +1,17 @@
+	//ƒqƒXƒgƒOƒ‰ƒ€‘ª’è” HISUT_SOKUT
+	SGr1->Cells[5][SGr1->Row] = ?
+
+	//‘ª’è” SOKUTE_SU
+	SGr1->Cells[15][SGr1->Row] = ?
+
+	if ( StrToInt (SGr1->Cells[5][SGr1->Row]) == StrToInt (SGr1->Cells[15][SGr1->Row])) {
+		sBuf = "Ï";//	‘ª’èÏ
+		} else  {
+		if (StrToInt (Query1->Fields->Fields[15]->AsString ) > 0 ) {
+			sBuf = "“r’†";//	‘ª’è“r’†
+		} else {
+			sBuf = "–¢";//	–¢‘ª’è
+		}
+	}
+	SGr1->Cells[10][SGr1->Row] = sBuf;
+

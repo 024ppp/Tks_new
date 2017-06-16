@@ -1,0 +1,145 @@
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=BCB.exe)(HOST=Windows NT PC)(USER=zqm)))(ADDRESS_LIST=(ADDRESS=(PROTOCOL=ipc)(KEY=KTRS.world))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.2.1.3 - Production
+  Time: 14-NOV-99 09:03:32
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS:接続先に接続できません。
+    ns main err code: 12535
+    TNS-12535: TNS:操作のタイムアウトが発生しました。
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: 操作のタイムアウトが発生しました。
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12547, connecting to:
+ (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=BEQ)(PROGRAM=oracle80)(ARGV0=oracle80ORCL)(ARGS='(DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))')))(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=BCB.exe)(HOST=UNICSPC04E)(USER=takase))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.4.0.0 - Production
+	Oracle Bequeath NT Protocol Adapter for 32-bit Windows: Version 2.3.4.0.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.4.0.0 - Production
+  Time: 02-DEC-99 22:37:35
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12206
+    TNS-12206: TNS: ナビゲーション中にTNSエラーを受け取りました。
+    ns main err code: 12547
+    TNS-12547: TNS: コンタクトが消失しました。
+    ns secondary err code: 12560
+    nt main err code: 517
+    TNS-00517: コンタクトがなくなりました。
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12203, connecting to:
+ (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1521))(ADDRESS=(COMMUNITY=tcp.world)(PROTOCOL=TCP)(Host=155.160.126.146)(Port=1526)))(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=BCB.exe)(HOST=UNICSPC04E)(USER=takase))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.4.0.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 2.3.4.0.0 - Production
+  Time: 05-JAN-00 13:19:54
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12203
+    TNS-12203: TNS: 接続先に接続できません。
+    ns main err code: 12535
+    TNS-12535: TNS: 操作はタイム・アウトしました。
+    ns secondary err code: 12560
+    nt main err code: 505
+    TNS-00505: 操作タイムアウトです。
+    nt secondary err code: 60
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12547, connecting to:
+ (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=BEQ)(PROGRAM=oracle80)(ARGV0=oracle80ORCL)(ARGS='(DESCRIPTION=(LOCAL=YES)(ADDRESS=(PROTOCOL=beq)))')))(CONNECT_DATA=(SID=ORCL)(CID=(PROGRAM=BCB.exe)(HOST=UNICSPC04E)(USER=takase))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.4.0.0 - Production
+	Oracle Bequeath NT Protocol Adapter for 32-bit Windows: Version 2.3.4.0.0 - Production
+  Time: 05-JAN-00 13:19:54
+  Tracing not turned on.
+  Tns error struct:
+    nr err code: 12206
+    TNS-12206: TNS: ナビゲーション中にTNSエラーを受け取りました。
+    ns main err code: 12547
+    TNS-12547: TNS: コンタクトが消失しました。
+    ns secondary err code: 12560
+    nt main err code: 517
+    TNS-00517: コンタクトがなくなりました。
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal OSN connect error 12154, connecting to:
+ ktrs_test.world
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+  Time: 18-JUL-00 13:58:40
+  Tracing not turned on.
+
+
+***********************************************************************
+Fatal OSN connect error 12154, connecting to:
+ ktrs_test.world
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+  Time: 09-AUG-00 08:39:02
+  Tracing not turned on.
+
+
+***********************************************************************
+Fatal OSN connect error 12154, connecting to:
+ ktrs_test.world
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+  Time: 10-AUG-00 08:37:19
+  Tracing not turned on.
+
+
+***********************************************************************
+Fatal OSN connect error 12154, connecting to:
+ ktrs_test.world
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+  Time: 10-AUG-00 08:45:52
+  Tracing not turned on.
+
+
+***********************************************************************
+Fatal OSN connect error 12154, connecting to:
+ ktrs_test.world
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+  Time: 10-AUG-00 08:50:36
+  Tracing not turned on.
+
+
+***********************************************************************
+Fatal OSN connect error 12154, connecting to:
+ ktrs_test.world
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 2.3.2.1.0 - Production
+  Time: 10-AUG-00 08:51:45
+  Tracing not turned on.
